@@ -64,7 +64,10 @@ class LibnameConan(ConanFile):
         if self.options.with_openssl:
             self.requires("openssl/1.1.1d")   
 
-
+    def system_requirements(self):
+        installer = tools.SystemPackageTool()
+        if tools.os_info.with_apt:
+            installer.install('libltdl-dev')
 
     def config_options(self):
         if self.settings.os == 'Windows':
