@@ -1,4 +1,4 @@
-from conans import ConanFile, tools, AutoToolsBuildEnvironment 
+from conans import ConanFile, tools, AutoToolsBuildEnvironment, RunEnvironment
 from conans.errors import ConanInvalidConfiguration
 import os
 import glob
@@ -92,7 +92,8 @@ class LibnameConan(ConanFile):
                 with tools.environment_append({
                         "FFTW_CFLAGS": tools.PkgConfig("fftw").cflags,
                         "FFTW_LIBS": tools.PkgConfig("fftw").libs}):
-                    self._autotools.configure(args=args,  configure_dir=self._source_subfolder)
+                    with tools.environment_append(RunEnvironment(self).vars):
+                        self._autotools.configure(args=args,  configure_dir=self._source_subfolder)
         return self._autotools
 
     def build(self):
