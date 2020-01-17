@@ -1,4 +1,4 @@
 sources:
-  "1.0.0":
-    url: "https://github.com/libauthor/libname"
-    sha256: "98f6f57aab0a424469619ed3047728f0d3901ce8f0dea919c11e7966d807e870"
+  "13.0":
+    url: "https://www.freedesktop.org/software/pulseaudio/releases/pulseaudio-13.0.tar.xz"
+    sha256: "961b23ca1acfd28f2bc87414c27bb40e12436efcf2158d29721b1e89f3f28057"
