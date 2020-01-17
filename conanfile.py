@@ -22,7 +22,6 @@ class LibnameConan(ConanFile):
         "with_glib": [True, False],
         "with_fftw": [True, False],
         "with_x11": [True, False],
-        "with_samplerate": [True, False],
         "with_openssl": [True, False],
     }
     default_options = {
@@ -32,7 +31,6 @@ class LibnameConan(ConanFile):
         "with_glib": True,
         "with_fftw": True,
         "with_x11": True,
-        "with_samplerate": True,
         "with_openssl": True,
     }
 
@@ -63,8 +61,6 @@ class LibnameConan(ConanFile):
             self.requires("libice/1.0.10@bincrafters/stable")
             self.requires("libsm/1.2.3@bincrafters/stable")
             self.requires("libxtst/1.2.3@bincrafters/stable")
-        if self.options.with_samplerate:
-            self.requires("libsamplerate/0.1.9@bincrafters/stable")
         if self.options.with_openssl:
             self.requires("openssl/1.1.1d")   
 
@@ -83,7 +79,7 @@ class LibnameConan(ConanFile):
         if not self._autotools:
             self._autotools = AutoToolsBuildEnvironment(self)
             args=["--without-caps"]
-            for lib in ['alsa', 'glib', 'fftw', 'x11', 'samplerate', 'openssl']:
+            for lib in ['alsa', 'glib', 'fftw', 'x11', 'openssl']:
                 args.append("--%s-%s" % ('enable' if getattr(self.options, 'with_' + lib) else 'disable', lib))
             if self.options.shared:
                 args.extend(['--enable-shared=yes', '--enable-static=no'])
