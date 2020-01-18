@@ -68,6 +68,7 @@ class LibnameConan(ConanFile):
         installer = tools.SystemPackageTool()
         if tools.os_info.with_apt:
             installer.install('libltdl-dev')
+            installer.install('libcap-dev')
 
     def config_options(self):
         if self.settings.os == 'Windows':
@@ -81,7 +82,7 @@ class LibnameConan(ConanFile):
     def _configure_autotools(self):
         if not self._autotools:
             self._autotools = AutoToolsBuildEnvironment(self)
-            args=["--without-caps"]
+            args=[]
             for lib in ['alsa', 'glib', 'fftw', 'x11', 'openssl']:
                 args.append("--%s-%s" % ('enable' if getattr(self.options, 'with_' + lib) else 'disable', lib))
             if self.options.shared:
