@@ -62,7 +62,7 @@ class LibnameConan(ConanFile):
             self.requires("libsm/1.2.3@bincrafters/stable")
             self.requires("libxtst/1.2.3@bincrafters/stable")
         if self.options.with_openssl:
-            self.requires("openssl/1.1.1f")   
+            self.requires("openssl/1.1.1g")   
 
     def system_requirements(self):
         installer = tools.SystemPackageTool()
