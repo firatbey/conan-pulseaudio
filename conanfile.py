@@ -56,11 +56,7 @@ class LibnameConan(ConanFile):
         if self.options.with_fftw:
             self.requires("fftw/3.3.8")
         if self.options.with_x11:
-            self.requires("libx11/1.6.8@bincrafters/stable")
-            self.requires("libxcb/1.13.1@bincrafters/stable")
-            self.requires("libice/1.0.10@bincrafters/stable")
-            self.requires("libsm/1.2.3@bincrafters/stable")
-            self.requires("libxtst/1.2.3@bincrafters/stable")
+            self.requires("xorg/system")
         if self.options.with_openssl:
             self.requires("openssl/1.1.1g")   
 
