@@ -33,6 +33,8 @@ class LibnameConan(ConanFile):
         "with_x11": True,
         "with_openssl": True,
     }
+    
+    build_requires = "gettext/0.20.1"
 
     @property
     def _source_subfolder(self):
