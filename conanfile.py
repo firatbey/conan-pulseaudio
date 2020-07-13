@@ -70,6 +70,10 @@ class LibnameConan(ConanFile):
             installer.install('libcap-dev')
             if self.options.with_dbus:
                 installer.install('libdbus-1-dev')
+        elif tools.os_info.with_yum or tools.os_info.with_dnf:
+            installer.install('libcap-devel')
+            if self.options.with_dbus:
+                installer.install('dbus-devel')
 
     def config_options(self):
         if self.settings.os == 'Windows':
