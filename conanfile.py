@@ -30,7 +30,7 @@ class LibnameConan(ConanFile):
         "fPIC": True,
         "with_alsa": True,
         "with_glib": True,
-        "with_fftw": True,
+        "with_fftw": False,
         "with_x11": True,
         "with_openssl": True,
         "with_dbus": True,
@@ -106,6 +106,9 @@ class LibnameConan(ConanFile):
         return self._autotools
 
     def build(self):
+        if self.options.with_fftw:
+            if self.options['fftw'].precision != "single":
+                raise ConanInvalidConfiguration("pulseaudio needs fftw to be built with option fftw:precision=single")
         
         for package in self.deps_cpp_info.deps:
             lib_path = self.deps_cpp_info[package].rootpath
