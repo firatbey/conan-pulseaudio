@@ -2,7 +2,6 @@ from conans import ConanFile, tools, AutoToolsBuildEnvironment, RunEnvironment
 from conans.errors import ConanInvalidConfiguration
 import os
 import glob
-import shutil
 
 
 class LibnameConan(ConanFile):
@@ -109,14 +108,6 @@ class LibnameConan(ConanFile):
         if self.options.with_fftw:
             if self.options['fftw'].precision != "single":
                 raise ConanInvalidConfiguration("pulseaudio needs fftw to be built with option fftw:precision=single")
-        
-        for package in self.deps_cpp_info.deps:
-            lib_path = self.deps_cpp_info[package].rootpath
-            for dirpath, _, filenames in os.walk(lib_path):
-                for filename in filenames:
-                    if filename.endswith('.pc'):
-                        shutil.copyfile(os.path.join(dirpath, filename), filename)
-                        tools.replace_prefix_in_pc_file(filename, lib_path)
 
         autotools = self._configure_autotools()
         autotools.make()
