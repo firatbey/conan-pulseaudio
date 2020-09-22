@@ -55,7 +55,7 @@ class LibnameConan(ConanFile):
         if self.options.with_alsa:
             self.requires("libalsa/1.1.9")
         if self.options.with_glib:
-            self.requires("glib/2.65.1")
+            self.requires("glib/2.66.0")
         if self.options.with_fftw:
             self.requires("fftw/3.3.8")
         if self.options.with_x11:
