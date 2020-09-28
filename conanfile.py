@@ -100,8 +100,7 @@ class LibnameConan(ConanFile):
                 with tools.environment_append({
                         "FFTW_CFLAGS": tools.PkgConfig("fftw").cflags,
                         "FFTW_LIBS": tools.PkgConfig("fftw").libs}) if self.options.with_fftw else tools.no_op():
-                    with tools.environment_append(RunEnvironment(self).vars):
-                        self._autotools.configure(args=args,  configure_dir=self._source_subfolder)
+                    self._autotools.configure(args=args,  configure_dir=self._source_subfolder)
         return self._autotools
 
     def build(self):
@@ -109,8 +108,9 @@ class LibnameConan(ConanFile):
             if self.options['fftw'].precision != "single":
                 raise ConanInvalidConfiguration("pulseaudio needs fftw to be built with option fftw:precision=single")
 
-        autotools = self._configure_autotools()
-        autotools.make()
+        with tools.environment_append(RunEnvironment(self).vars):
+            autotools = self._configure_autotools()
+            autotools.make()
 
     def package(self):
         self.copy(pattern="LICENSE", dst="licenses", src=self._source_subfolder)
