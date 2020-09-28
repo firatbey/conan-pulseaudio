@@ -96,6 +96,9 @@ class LibnameConan(ConanFile):
             else:
                 args.extend(['--enable-shared=no', '--enable-static=yes'])
             args.append("--with-udev-rules-dir=%s" % os.path.join(self.package_folder, "bin", "udev", "rules.d"))
+            args.append("--disable-systemd-daemon")
+            args.append("--disable-systemd-login")
+            args.append("--disable-systemd-journal")
             with tools.environment_append({"PKG_CONFIG_PATH": self.build_folder}):
                 with tools.environment_append({
                         "FFTW_CFLAGS": tools.PkgConfig("fftw").cflags,
