@@ -114,8 +114,9 @@ class LibnameConan(ConanFile):
 
     def package(self):
         self.copy(pattern="LICENSE", dst="licenses", src=self._source_subfolder)
-        autotools = self._configure_autotools()
-        autotools.install()
+        with tools.environment_append(RunEnvironment(self).vars):
+            autotools = self._configure_autotools()
+            autotools.install()
         tools.rmdir(os.path.join(self.package_folder, 'etc'))
         tools.rmdir(os.path.join(self.package_folder, 'share'))
         tools.rmdir(os.path.join(self.package_folder, 'lib', 'cmake'))
