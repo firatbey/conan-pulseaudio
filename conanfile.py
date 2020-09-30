@@ -61,7 +61,7 @@ class LibnameConan(ConanFile):
         if self.options.with_x11:
             self.requires("xorg/system")
         if self.options.with_openssl:
-            self.requires("openssl/1.1.1g")   
+            self.requires("openssl/1.1.1h")   
 
     def system_requirements(self):
         installer = tools.SystemPackageTool()
