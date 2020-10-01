@@ -51,7 +51,7 @@ class LibnameConan(ConanFile):
 
 
     def requirements(self):
-        self.requires("libsndfile/1.0.28@")
+        self.requires("libsndfile/1.0.29@")
         if self.options.with_alsa:
             self.requires("libalsa/1.1.9")
         if self.options.with_glib:
