@@ -51,11 +51,11 @@ class LibnameConan(ConanFile):
 
 
     def requirements(self):
-        self.requires("libsndfile/1.0.29@")
+        self.requires("libsndfile/1.0.30@")
         if self.options.with_alsa:
             self.requires("libalsa/1.1.9")
         if self.options.with_glib:
-            self.requires("glib/2.66.1")
+            self.requires("glib/2.66.2")
         if self.options.with_fftw:
             self.requires("fftw/3.3.8")
         if self.options.with_x11:
