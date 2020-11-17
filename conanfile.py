@@ -62,15 +62,14 @@ class LibnameConan(ConanFile):
             self.requires("xorg/system")
         if self.options.with_openssl:
             self.requires("openssl/1.1.1h")   
+        self.requires("libcap/2.45")
 
     def system_requirements(self):
         installer = tools.SystemPackageTool()
         if tools.os_info.with_apt:
-            installer.install('libcap-dev')
             if self.options.with_dbus:
                 installer.install('libdbus-1-dev')
         elif tools.os_info.with_yum or tools.os_info.with_dnf:
-            installer.install('libcap-devel')
             if self.options.with_dbus:
                 installer.install('dbus-devel')
 
