@@ -6,6 +6,7 @@ import glob
 
 class LibnameConan(ConanFile):
     name = "pulseaudio"
+    version = "13.0"
     description = "PulseAudio is a sound system for POSIX OSes, meaning that it is a proxy for sound applications."
     topics = ("conan", "pulseaudio", "sound")
     url = "https://github.com/bincrafters/conan-pulseaudio"
